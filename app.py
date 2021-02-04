@@ -10,6 +10,7 @@ import numpy as np
 from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+import tensorflow
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -23,7 +24,7 @@ app = Flask(__name__, template_folder='templates')
 MODEL_PATH = 'models/model_resnet50.h5'
 
 # Load your trained model
-model = load_model(MODEL_PATH)
+model = tensorflow.keras.models.load_model (MODEL_PATH)
 # model._make_predict_function()          # Necessary
 # print('Model loaded. Start serving...')
 
@@ -77,4 +78,5 @@ def upload():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # app.run(host='0.0.0.0', port=8080)
 
